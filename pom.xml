@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.igorr.quickstarts</groupId>
+    <artifactId>helloworld</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>SBT Quickstart: helloworld</name>
+    <description>SBT Quickstarts: Helloworld</description>
+    <url>http://wildfly.org</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+
+
+    <modules>
+        <module>common</module>
+        <module>beans</module>
+        <module>ear</module>
+        <module>war</module>
+    </modules>
+
+
+    <properties>
+        <java-version>1.8</java-version>
+        <slf4j-version>1.7.25</slf4j-version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+        <version.jboss.spec.javaee.7.0>1.0.3.Final</version.jboss.spec.javaee.7.0>
+
+        <!-- other plug-in versions -->
+        <version.war.plugin>3.0.0</version.war.plugin>
+
+        <!-- maven-compiler-plugin -->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Define the version of the JBoss Java EE APIs we want to use -->
+            <!-- JBoss distributes a complete set of Java EE APIs including
+                a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
+                a collection) of artifacts. We use this here so that we always get the correct
+                versions of artifacts. Here we use the jboss-javaee-7.0 stack (you can
+                read this as the JBoss stack of the Java EE APIs). You can actually
+                use this stack with any version of WildFly that implements Java EE. -->
+            <dependency>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-7.0</artifactId>
+                <version>${version.jboss.spec.javaee.7.0}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--****** Устанавливаем единую версию для всех Spring  зависимостей *******-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>3.2.18.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--************************************************************************-->
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>io.spring.repo.maven.release</id>
+            <url>http://repo.spring.io/release/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <dependencies>
+
+        <!-- Import the CDI API, we use provided scope as the API is included in WildFly -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope
+            as the API is included in WildFly -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.ws.rs/jboss-jaxrs-api_2.0_spec -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ws.rs</groupId>
+            <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+            <version>1.0.0.Alpha1</version>
+        </dependency>
+
+        <!-- Import the Servlet API, we use provided scope as the API is included in WildFly -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-jaxrs -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.collections/google-collections -->
+        <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+            <version>1.0-rc2</version>
+        </dependency>
+
+        <!--****** Spring зависимости ******-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--*********************************-->
+
+        <!--********* Логгирование *******-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <!-- Set the name of the WAR, used as the context root when the app
+            is deployed -->
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${version.war.plugin}</version>
+                <configuration>
+                    <!-- Java EE doesn't require web.xml, Maven needs to catch up! -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <!-- WildFly plug-in to deploy the WAR -->
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven.plugin}</version>
+                <configuration>
+                    <hostname>localhost</hostname>
+                    <username>admin</username>
+                    <password>admin</password>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

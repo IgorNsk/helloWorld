@@ -1,0 +1,15 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.igorr.quickstarts.helloworld.common</groupId>
+    <artifactId>dpl</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>DPL module</name>
+
+    <parent>
+        <groupId>org.igorr.quickstarts.helloworld</groupId>
+        <artifactId>common</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+</project>

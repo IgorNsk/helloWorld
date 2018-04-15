@@ -1,0 +1,32 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.igorr.quickstarts.helloworld</groupId>
+    <artifactId>common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Common modules</name>
+   
+    <parent>
+        <groupId>org.igorr.quickstarts</groupId>
+        <artifactId>helloworld</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <modules>
+        <module>logging</module>
+        <module>models</module>
+        <module>dpl</module>
+        <module>exceptions</module>
+    </modules>
+
+    <!--dependencies>
+        <dependency>
+            <groupId>root.project.common</groupId>
+            <artifactId>logging</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies-->
+
+</project>
+

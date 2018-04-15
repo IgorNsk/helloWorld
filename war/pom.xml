@@ -1,0 +1,21 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.igorr.quickstarts.helloworld</groupId>
+    <artifactId>web</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Web modules</name>
+   
+    <parent>
+        <groupId>org.igorr.quickstarts</groupId>
+        <artifactId>helloworld</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <modules>
+        <module>servlets</module>
+        <module>restful</module>
+    </modules>
+</project>
+
