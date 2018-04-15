@@ -2,10 +2,10 @@ package org.igorr.quickstarts.helloworld.web.servlets.login;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.igorr.quickstarts.helloworld.exceptions.AppException;
 import org.igorr.quickstarts.helloworld.beans.BeansConfiguration;
 import org.igorr.quickstarts.helloworld.beans.services.starter.BeanWithDependency;
 import org.igorr.quickstarts.helloworld.beans.services.starter.GreetingService;
+import org.igorr.quickstarts.helloworld.exceptions.AppException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.sql.SQLException;
 import java.util.Locale;
 

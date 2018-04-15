@@ -1,4 +1,4 @@
-package org.igorr.quickstarts.helloworld.web.restful.mainpage;
+package org.igorr.quickstarts.helloworld.web.restful.hello;
 
 import com.google.common.collect.Sets;
 import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
@@ -14,8 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-@ApplicationPath("restful/mainpage")
-public class MainPageInfoApplication extends Application {
+@ApplicationPath("restful/hello")
+public class HelloInfoApplication extends Application {
 
     public static final CacheControl NO_CACHE;
     private static final String DATE_FORMAT_STRING = "dd.MM.yyyy";
@@ -31,7 +31,7 @@ public class MainPageInfoApplication extends Application {
     public Set<Class<?>> getClasses() {
         //noinspection RedundantTypeArguments
         return Sets.<Class<?>>newHashSet(
-                MainPageService.class
+                HelloService.class
 
 
 

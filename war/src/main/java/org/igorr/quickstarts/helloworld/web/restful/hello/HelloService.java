@@ -1,4 +1,4 @@
-package org.igorr.quickstarts.helloworld.web.restful.mainpage;
+package org.igorr.quickstarts.helloworld.web.restful.hello;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,10 +16,10 @@ import javax.ws.rs.core.Response;
  * Created by IgorR on 06.10.16.
  */
 
-@Path("/hello")
-public class MainPageService extends BasicRestService {
+@Path("/")
+public class HelloService extends BasicRestService {
 
-    private static final Log LOG = LogFactory.getLog(MainPageService.class);
+    private static final Log LOG = LogFactory.getLog(HelloService.class);
     private static final long PROCESS_LATENCY = 60L;
 
 
