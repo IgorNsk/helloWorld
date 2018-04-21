@@ -2,7 +2,7 @@
 *.iml
 #config file
 rebel.xml
-.idea
+.idea/
 # Compiled class file
 *.class
 

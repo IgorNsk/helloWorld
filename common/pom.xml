@@ -18,6 +18,7 @@
         <module>models</module>
         <module>dpl</module>
         <module>exceptions</module>
+        <module>aspect</module>
     </modules>
 
     <!--dependencies>
