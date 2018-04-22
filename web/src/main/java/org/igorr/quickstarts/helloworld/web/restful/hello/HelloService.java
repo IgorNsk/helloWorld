@@ -28,6 +28,7 @@ public class HelloService extends BasicRestService {
     @Path("/{num}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response fixCqAllTasks(@PathParam("num") String num, @Context javax.servlet.http.HttpServletRequest request) {
+        LOG.debug("call makeResponse()");
         return makeResponse(num, "0", "false", request);
     }
 
