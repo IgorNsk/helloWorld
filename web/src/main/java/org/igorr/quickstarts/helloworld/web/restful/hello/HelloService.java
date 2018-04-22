@@ -2,6 +2,7 @@ package org.igorr.quickstarts.helloworld.web.restful.hello;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.igorr.quickstarts.helloworld.web.annotations.Trace;
 import org.igorr.quickstarts.helloworld.web.restful.BasicRestService;
 
 import javax.ws.rs.GET;
@@ -30,7 +31,7 @@ public class HelloService extends BasicRestService {
         return makeResponse(num, "0", "false", request);
     }
 
-
+    @Trace(level = "debug")
     private Response makeResponse(String cqNum, String filter, String debug, javax.servlet.http.HttpServletRequest request) {
 
         LOG.info("makeResponse");

@@ -14,13 +14,4 @@
     <artifactId>aspects</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.igorr.quickstarts.helloworld</groupId>
-            <artifactId>war</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-
-    
 </project>

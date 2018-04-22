@@ -23,7 +23,7 @@
         <module>common</module>
         <module>beans</module>
         <module>ear</module>
-        <module>war</module>
+        <module>web</module>
     </modules>
 
 

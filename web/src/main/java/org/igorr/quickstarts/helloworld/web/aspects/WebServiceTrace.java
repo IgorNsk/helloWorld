@@ -5,6 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.igorr.quickstarts.helloworld.web.annotations.Trace;
 
 @Aspect
 public class WebServiceTrace {
@@ -12,6 +13,12 @@ public class WebServiceTrace {
 
     @Pointcut("execution(* org.igorr.quickstarts.helloworld.web.restful.hello.HelloService.*(..))")
     public void webServiceMethod() {
+        // Do nothing because of aspect.
+    }
+
+
+    @Pointcut("@annotation(annotationTrace)")
+    public void webServiceMethodDebug(Trace annotationTrace){
         // Do nothing because of aspect.
     }
 
@@ -29,4 +36,21 @@ public class WebServiceTrace {
 
         return result;
     }
+
+
+    @Around("webServiceMethodDebug(annotationTrace)")
+    public Object debugWebServiceCall(Trace annotationTrace, ProceedingJoinPoint thisJoinPoint) throws Throwable {
+
+        String methodName = thisJoinPoint.getSignature().getName();
+        Object[] methodArgs = thisJoinPoint.getArgs();
+
+
+        LOG.debug("Call DEBUG method " + methodName + " with args " + methodArgs);
+        LOG.debug("Trace.level(): " + annotationTrace.level());
+
+        Object result = thisJoinPoint.proceed();
+        return result;
+
+    }
+
 }
