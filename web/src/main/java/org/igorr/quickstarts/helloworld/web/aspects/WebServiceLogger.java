@@ -16,7 +16,7 @@ public class WebServiceLogger {
 
     private static AtomicInteger count = new AtomicInteger(0);
 
-    @Pointcut("execution(* org.igorr.quickstarts.helloworld.web.restful.hello.HelloServiceS.*(..))")
+    @Pointcut("execution(* org.igorr.quickstarts.helloworld.web.restful.hello.HelloService.*(..))")
     public void webServiceMethod() {
         // Do nothing because of aspect.
     }
@@ -33,7 +33,7 @@ public class WebServiceLogger {
         String methodName = thisJoinPoint.getSignature().getName();
         Object[] methodArgs = thisJoinPoint.getArgs();
 
-        LOG.debug("Call before method " + methodName + " with args " + methodArgs);
+        LOG.debug("Call before method " + methodName + " with args " + methodArgs.toString());
 
         Object result = thisJoinPoint.proceed();
 

@@ -2,8 +2,12 @@ package org.igorr.quickstarts.helloworld.web.restful.hello;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.igorr.quickstarts.helloworld.beans.BeansConfiguration;
+import org.igorr.quickstarts.helloworld.beans.services.messages.MessageService;
 import org.igorr.quickstarts.helloworld.web.annotations.Trace;
 import org.igorr.quickstarts.helloworld.web.restful.BasicRestService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Optional;
 
 /**
  * Created by IgorR on 06.10.16.
@@ -40,12 +45,23 @@ public class HelloService extends BasicRestService {
         try {
 
             String message;
-                Boolean result = Boolean.FALSE;
-                message = result ? "Ok" : "Обнаружен ранее запущенный процесс или в процессе выполнения возникла ошибка. Смотрите лог";
-                return Response.ok(message, MediaType.TEXT_PLAIN + "; charset=utf-8").build();
+            Boolean result = Boolean.FALSE;
+            message = result ? "Ok" : generateMessage();
+            return Response.ok(message, MediaType.TEXT_PLAIN + "; charset=utf-8").build();
 
         } catch (Exception e) {
             return Response.ok(e.getMessage(), "application/json; charset=utf-8").build();
         }
+    }
+
+    private String generateMessage() {
+        AbstractApplicationContext context = new AnnotationConfigApplicationContext(BeansConfiguration.class);
+        MessageService messageService = context.getBean(MessageService.class);
+        String msg = messageService.getMessage();
+        context.registerShutdownHook();
+        Optional<String> msgObj = Optional.ofNullable(msg);
+
+        return msgObj.orElse("Ошибка при получении сообщения");
+
     }
 }

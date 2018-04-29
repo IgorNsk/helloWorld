@@ -3,6 +3,7 @@ package org.igorr.quickstarts.helloworld.web.servlets.login;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.igorr.quickstarts.helloworld.beans.BeansConfiguration;
+import org.igorr.quickstarts.helloworld.beans.services.messages.MessageService;
 import org.igorr.quickstarts.helloworld.beans.services.starter.BeanWithDependency;
 import org.igorr.quickstarts.helloworld.beans.services.starter.GreetingService;
 import org.igorr.quickstarts.helloworld.exceptions.AppException;
@@ -16,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.Locale;
 
 
@@ -33,11 +33,9 @@ public class LoginServlet extends HttpServlet {
     /**
      * @param request
      * @param response
-     * @throws ServletException
      * @throws IOException
-     * @throws SQLException
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
 
@@ -59,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 
             printRequest(out, request, response);
         } catch (AppException e) {
-            e.printStackTrace();
+            LOG.error(e);
         }
 
 
@@ -82,6 +80,10 @@ public class LoginServlet extends HttpServlet {
         LOG.info("Argument.required: " + context.getMessage("argument.required", new Object[]{"Test_Argument"}, Locale.getDefault()));
         LOG.info("Argument.required: " + context.getMessage("argument.required", new Object[]{"Test_UK_Argument"}, Locale.UK));
 
+        /**/
+        MessageService showService = context.getBean(MessageService.class);
+        showService.show();
+
         context.registerShutdownHook();
 
 
@@ -98,7 +100,7 @@ public class LoginServlet extends HttpServlet {
 
     }
 
-    void printRequest(PrintWriter out, HttpServletRequest request, HttpServletResponse response) throws AppException {
+    private void printRequest(PrintWriter out, HttpServletRequest request, HttpServletResponse response) throws AppException {
 
 
         LOG.info("Test Start");
@@ -136,8 +138,9 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (Exception e) {
+        } catch (ServletException | IOException e) {
             LOG.error(e.getMessage());
+            throw e;
         }
     }
 
@@ -154,8 +157,9 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (Exception e) {
+        } catch (ServletException | IOException e) {
             LOG.error(e.getMessage());
+            throw e;
         }
     }
 

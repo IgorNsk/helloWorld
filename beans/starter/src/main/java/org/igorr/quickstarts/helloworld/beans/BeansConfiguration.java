@@ -2,15 +2,18 @@ package org.igorr.quickstarts.helloworld.beans;
 
 import org.igorr.quickstarts.helloworld.beans.services.starter.CommandManager;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 /**
  * Конфигурационный класс Spring IoC контейнера
  */
 @Configuration
-@ComponentScan(basePackages = "org.igorr.quickstarts.helloworld.beans")
-//@Import(AnotherConfiguration.class)
+//@ComponentScan(basePackages = "org.igorr.quickstarts.helloworld.beans")
+@Import(AnotherConfiguration.class)
 public class BeansConfiguration {
 
     @Bean
