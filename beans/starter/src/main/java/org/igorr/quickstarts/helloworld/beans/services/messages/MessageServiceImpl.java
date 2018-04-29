@@ -51,11 +51,11 @@ public class MessageServiceImpl implements MessageService, InitializingBean, Dis
 
     @Override
     public void destroy() throws Exception {
-        LOG.debug("---");
+        LOG.debug("call destroy()");
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        LOG.debug("+++");
+        LOG.debug("call afterPropertiesSet()");
     }
 }
