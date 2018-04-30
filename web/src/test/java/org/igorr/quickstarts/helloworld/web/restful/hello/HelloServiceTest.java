@@ -62,6 +62,19 @@ public class HelloServiceTest {
         Assert.assertEquals(null, result);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testErrorFixCqAllTasks() throws Exception {
+        mockStatic(Response.class);
+        Response.ResponseBuilder responseBuilder = mock(Response.ResponseBuilder.class);
+        Response response = mock(Response.class);
+        PowerMockito.when(Response.ok(any(Object.class),any(String.class))).thenReturn(null);
+        PowerMockito.when(Response.ok(any(Object.class),any(String.class)).build()).thenReturn(null);
+
+        Response result = helloService.fixCqAllTasks("num", null);
+        Assert.assertEquals(null, result);
+    }
+
+
     @Test
     public void testPrivateMethod() throws Exception {
 
