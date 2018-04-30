@@ -26,8 +26,6 @@ import java.util.Optional;
 public class HelloService extends BasicRestService {
 
     private static final Log LOG = LogFactory.getLog(HelloService.class);
-    private static final long PROCESS_LATENCY = 60L;
-
 
     @GET
     @Path("/{num}")
@@ -43,12 +41,8 @@ public class HelloService extends BasicRestService {
         LOG.info("makeResponse");
 
         try {
-
-            String message;
-            Boolean result = Boolean.FALSE;
-            message = result ? "Ok" : generateMessage();
+            String message = generateMessage();
             return Response.ok(message, MediaType.TEXT_PLAIN + "; charset=utf-8").build();
-
         } catch (Exception e) {
             return Response.ok(e.getMessage(), "application/json; charset=utf-8").build();
         }

@@ -8,11 +8,11 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-@Component("messageService")
+@Service("messageService")
 @Scope("prototype")
 @Qualifier("main")
 public class MessageServiceImpl implements MessageService, InitializingBean, DisposableBean {
@@ -37,7 +37,7 @@ public class MessageServiceImpl implements MessageService, InitializingBean, Dis
                     new SuccessMessage("success")
             );
         } else {
-            msg = manager.get(() ->
+            msg = manager.get(
                     new ErrorMessage("error")
             );
         }

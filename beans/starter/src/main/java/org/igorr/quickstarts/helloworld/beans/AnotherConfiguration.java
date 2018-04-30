@@ -20,6 +20,7 @@ public class AnotherConfiguration {
 
     @Bean
     BeanWithDependency beanWithDependency() {
+        // bla-bla-bla
         return new BeanWithDependency();
     }
 }
