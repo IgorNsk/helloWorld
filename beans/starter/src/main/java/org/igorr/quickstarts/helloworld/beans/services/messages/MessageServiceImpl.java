@@ -7,7 +7,6 @@ import org.igorr.quickstarts.helloworld.beans.generics.MessageManagerImpl;
 import org.igorr.quickstarts.helloworld.beans.services.util.Api;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -48,10 +47,8 @@ public class MessageServiceImpl implements MessageService, InitializingBean, Dis
         return msg.get().getMessage();
     }
 
-    @Autowired
     @Override
-    @Qualifier("foo")
-    public void call(Api api) {
+    public void call(@Qualifier("foo") Api api) {
         api.call();
     }
 
