@@ -1,6 +1,9 @@
 package org.igorr.quickstarts.helloworld.beans.services.messages;
 
 import org.apache.log4j.Logger;
+import org.igorr.quickstarts.helloworld.beans.services.util.Api;
+import org.igorr.quickstarts.helloworld.beans.services.util.BarApiImpl;
+import org.igorr.quickstarts.helloworld.beans.services.util.FooApiImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +28,15 @@ public class MessageServiceImplTest {
     }
 
     @Test
-    public void testCall() throws Exception{
-        //messageServiceImpl.call();
+    public void testFooCall() throws Exception{
+        Api api = new FooApiImpl();
+        messageServiceImpl.call(api);
+    }
+
+    @Test
+    public void testBarCall() throws Exception{
+        Api api = new BarApiImpl();
+        messageServiceImpl.call(api);
     }
 
     @Test

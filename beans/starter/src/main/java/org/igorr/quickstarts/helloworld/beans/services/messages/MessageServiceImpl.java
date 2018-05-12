@@ -48,7 +48,7 @@ public class MessageServiceImpl implements MessageService, InitializingBean, Dis
     }
 
     @Override
-    public void call(@Qualifier("foo") Api api) {
+    public void call(Api api) {
         api.call();
     }
 
