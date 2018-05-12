@@ -2,6 +2,7 @@ package org.igorr.quickstarts.helloworld.web.restful;
 
 import org.igorr.quickstarts.helloworld.beans.BeansConfiguration;
 import org.igorr.quickstarts.helloworld.beans.services.messages.MessageService;
+import org.igorr.quickstarts.helloworld.beans.services.util.ApiService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
@@ -17,9 +18,16 @@ public class BasicRestService {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(BeansConfiguration.class);
         MessageService messageService = context.getBean(MessageService.class);
         String msg = messageService.getMessage();
-        context.registerShutdownHook();
-        Optional<String> msgObj = Optional.ofNullable(msg);
+        // ApiService
+        ApiService barApi = context.getBean("barApiService", ApiService.class);
+        messageService.call(barApi);
 
+        ApiService fooApi = context.getBean("fooApiService", ApiService.class);
+        messageService.call(fooApi);
+
+        context.registerShutdownHook();
+
+        Optional<String> msgObj = Optional.ofNullable(msg);
         return msgObj.orElse("Ошибка при получении сообщения");
 
     }

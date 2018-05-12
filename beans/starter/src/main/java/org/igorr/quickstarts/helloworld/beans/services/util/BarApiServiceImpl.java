@@ -5,14 +5,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-
-@Service
-@Qualifier("foo")
-public class FooApiImpl implements Api {
-    private static final Logger LOG = LogManager.getLogger(FooApiImpl.class);
-
+@Service("barApiService")
+@Qualifier("bar")
+public class BarApiServiceImpl implements ApiService {
+    private static final Logger LOG = LogManager.getLogger(BarApiServiceImpl.class);
     @Override
     public void call() {
-        LOG.info("***************************");
+        LOG.info("bar-bar-bar-bar");
     }
 }
