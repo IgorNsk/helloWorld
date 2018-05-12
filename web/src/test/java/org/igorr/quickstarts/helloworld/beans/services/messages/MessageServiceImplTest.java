@@ -25,6 +25,11 @@ public class MessageServiceImplTest {
     }
 
     @Test
+    public void testCall() throws Exception{
+        //messageServiceImpl.call();
+    }
+
+    @Test
     public void testGetMessage() throws Exception {
         String result = messageServiceImpl.getMessage();
         Assert.assertNotEquals(null, result);
@@ -39,6 +44,8 @@ public class MessageServiceImplTest {
     public void testAfterPropertiesSet() throws Exception {
         messageServiceImpl.afterPropertiesSet();
     }
+
+
 }
 
 //Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme

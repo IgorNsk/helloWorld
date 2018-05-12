@@ -1,4 +1,4 @@
-package org.igorr.quickstarts.helloworld.web.restful.hello;
+package org.igorr.quickstarts.helloworld.web.restful.test;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,14 +18,14 @@ import javax.ws.rs.core.Response;
  */
 
 @Path("/")
-public class HelloService extends BasicRestService {
+public class TestService extends BasicRestService {
 
-    private static final Log LOG = LogFactory.getLog(HelloService.class);
+    private static final Log LOG = LogFactory.getLog(TestService.class);
 
     @GET
-    @Path("/{num}")
+    @Path("/{code}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response fixCqAllTasks(@PathParam("num") String num, @Context javax.servlet.http.HttpServletRequest request) {
+    public Response call(@PathParam("code") String num, @Context javax.servlet.http.HttpServletRequest request) {
         LOG.debug("call makeResponse()");
         return makeResponse(num, "0", "false", request);
     }
