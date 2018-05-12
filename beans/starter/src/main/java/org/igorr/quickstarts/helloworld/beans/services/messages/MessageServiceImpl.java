@@ -4,7 +4,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.igorr.quickstarts.helloworld.beans.generics.MessageManager;
 import org.igorr.quickstarts.helloworld.beans.generics.MessageManagerImpl;
-import org.igorr.quickstarts.helloworld.beans.services.util.Api;
+import org.igorr.quickstarts.helloworld.beans.services.util.ApiService;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -48,7 +48,7 @@ public class MessageServiceImpl implements MessageService, InitializingBean, Dis
     }
 
     @Override
-    public void call(Api api) {
+    public void call(ApiService api) {
         api.call();
     }
 

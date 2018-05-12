@@ -1,9 +1,9 @@
 package org.igorr.quickstarts.helloworld.beans.services.messages;
 
 import org.apache.log4j.Logger;
-import org.igorr.quickstarts.helloworld.beans.services.util.Api;
-import org.igorr.quickstarts.helloworld.beans.services.util.BarApiImpl;
-import org.igorr.quickstarts.helloworld.beans.services.util.FooApiImpl;
+import org.igorr.quickstarts.helloworld.beans.services.util.ApiService;
+import org.igorr.quickstarts.helloworld.beans.services.util.BarApiServiceImpl;
+import org.igorr.quickstarts.helloworld.beans.services.util.FooApiServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,20 +29,21 @@ public class MessageServiceImplTest {
 
     @Test
     public void testFooCall() throws Exception{
-        Api api = new FooApiImpl();
+        ApiService api = new FooApiServiceImpl();
         messageServiceImpl.call(api);
     }
 
     @Test
     public void testBarCall() throws Exception{
-        Api api = new BarApiImpl();
+        ApiService api = new BarApiServiceImpl();
         messageServiceImpl.call(api);
     }
 
     @Test
     public void testGetMessage() throws Exception {
         String result = messageServiceImpl.getMessage();
-        Assert.assertNotEquals(null, result);
+        //System.out.println(result);
+        Assert.assertEquals("ErrorMessage::error", result);
     }
 
     @Test
