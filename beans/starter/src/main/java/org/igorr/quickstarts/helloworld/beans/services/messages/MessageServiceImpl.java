@@ -4,19 +4,23 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.igorr.quickstarts.helloworld.beans.generics.MessageManager;
 import org.igorr.quickstarts.helloworld.beans.generics.MessageManagerImpl;
+import org.igorr.quickstarts.helloworld.beans.services.util.Api;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-@Component("messageService")
+@Service("messageService")
 @Scope("prototype")
 @Qualifier("main")
 public class MessageServiceImpl implements MessageService, InitializingBean, DisposableBean {
     private static final Logger LOG = LogManager.getLogger(MessageServiceImpl.class);
+
+
 
     @Override
     public void show() {
@@ -37,11 +41,18 @@ public class MessageServiceImpl implements MessageService, InitializingBean, Dis
                     new SuccessMessage("success")
             );
         } else {
-            msg = manager.get(() ->
+            msg = manager.get(
                     new ErrorMessage("error")
             );
         }
         return msg.get().getMessage();
+    }
+
+    @Autowired
+    @Override
+    @Qualifier("foo")
+    public void call(Api api) {
+        api.call();
     }
 
     private int random() {

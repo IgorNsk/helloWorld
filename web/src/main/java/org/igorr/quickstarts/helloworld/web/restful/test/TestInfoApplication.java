@@ -1,6 +1,7 @@
-package org.igorr.quickstarts.helloworld.web.restful;
+package org.igorr.quickstarts.helloworld.web.restful.test;
 
 import com.google.common.collect.Sets;
+import org.igorr.quickstarts.helloworld.web.restful.SingletonsProps;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -8,8 +9,8 @@ import javax.ws.rs.core.CacheControl;
 import java.util.Set;
 
 
-@ApplicationPath("restful/")
-public class RestInfoApplication extends Application {
+@ApplicationPath("restful/test")
+public class TestInfoApplication extends Application {
 
     public static final CacheControl NO_CACHE;
 
@@ -24,6 +25,10 @@ public class RestInfoApplication extends Application {
     public Set<Class<?>> getClasses() {
         //noinspection RedundantTypeArguments
         return Sets.<Class<?>>newHashSet(
+                TestService.class
+
+
+
                 // ...
                 //JacksonConfigurator.class
         );

@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
      * @param response
      * @throws IOException
      */
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html;charset=UTF-8");
 
@@ -134,13 +134,12 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException      if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
             processRequest(request, response);
-        } catch (ServletException | IOException e) {
+        } catch (Exception e) {
             LOG.error(e.getMessage());
-            throw e;
+
         }
     }
 
@@ -153,13 +152,11 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException      if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         try {
             processRequest(request, response);
-        } catch (ServletException | IOException e) {
+        } catch (Exception e) {
             LOG.error(e.getMessage());
-            throw e;
         }
     }
 

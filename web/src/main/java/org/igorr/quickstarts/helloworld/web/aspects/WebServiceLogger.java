@@ -8,13 +8,11 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.igorr.quickstarts.helloworld.web.annotations.Trace;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Arrays;
 
 @Aspect
 public class WebServiceLogger {
     private static final Logger LOG = Logger.getLogger(WebServiceLogger.class);
-
-    private static AtomicInteger count = new AtomicInteger(0);
 
     @Pointcut("execution(* org.igorr.quickstarts.helloworld.web.restful.hello.HelloService.*(..))")
     public void webServiceMethod() {
@@ -33,7 +31,7 @@ public class WebServiceLogger {
         String methodName = thisJoinPoint.getSignature().getName();
         Object[] methodArgs = thisJoinPoint.getArgs();
 
-        LOG.debug("Call before method " + methodName + " with args " + methodArgs.toString());
+        LOG.debug("Call before method " + methodName + " with args " + Arrays.toString(methodArgs));
 
         Object result = thisJoinPoint.proceed();
 
@@ -42,24 +40,6 @@ public class WebServiceLogger {
         return result;
     }
 
-    /*
-    @Around("webServiceMethodAnnotation(annotationTrace)")
-    public Object debugWebServiceCall(Trace annotationTrace, ProceedingJoinPoint thisJoinPoint) throws Throwable {
-
-        String methodName = thisJoinPoint.getSignature().getName();
-        Object[] methodArgs = thisJoinPoint.getArgs();
-
-
-
-        LOG.debug("Call annotation method " + methodName + " with args " + methodArgs);
-        LOG.debug("    Trace.level(): " + annotationTrace.level()) ;
-        LOG.debug("    count: " + count.incrementAndGet());
-
-        Object result = thisJoinPoint.proceed();
-        return result;
-
-    }
-    */
     @Before("webServiceMethodAnnotation(annotationTrace)")
     public void annotationWebServiceCall(Trace annotationTrace){
         LOG.debug("annotation level: " + annotationTrace.level());
