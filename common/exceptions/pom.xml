@@ -1,15 +1,14 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.igorr.quickstarts.helloworld.common</groupId>
-    <artifactId>exceptions</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>Exceptions module</name>
 
     <parent>
-        <groupId>org.igorr.quickstarts.helloworld</groupId>
+        <groupId>org.igorr.quickstarts</groupId>
         <artifactId>common</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
+
+    <groupId>org.igorr.quickstarts</groupId>
+    <artifactId>exceptions</artifactId>
+    <name>Exceptions module</name>
 
 </project>
