@@ -10,6 +10,7 @@
         <listener-class>org.igorr.quickstarts.helloworld.web.servlets.init.InitListener</listener-class>
     </listener>
 
+    <!-- пилим ->
     <!-- Основной сервлет для Spring MVC -->
     <!--
     <servlet>
