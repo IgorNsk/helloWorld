@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Locale;
+import java.util.*;
 
 
 /**
@@ -27,8 +27,14 @@ import java.util.Locale;
 public class LoginServlet extends HttpServlet {
 
     private static final Logger LOG = LogManager.getLogger(LoginServlet.class);
-
     private static final int COLUMN_COUNT = 5;
+
+    public LoginServlet() {
+        Properties sysProps = System.getProperties();
+        ArrayList<Object> list = new ArrayList<>(sysProps.entrySet());
+        list.stream().forEach(System.out::println);
+
+    }
 
     /**
      * @param request
@@ -40,17 +46,18 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
 
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        String login = request.getParameter("nick");
+        String password = request.getParameter("comment");
 
 
         //
 
         LOG.info("Test Start");
 
+
         try (PrintWriter out = response.getWriter()) {
 
-            printHeader(out, request);
+            //printHeader(out, request);
 
             out.println("<h3> login:" + login + "</h3>");
             out.println("<h3> password:" + password + "</h3>");
@@ -59,6 +66,7 @@ public class LoginServlet extends HttpServlet {
         } catch (AppException e) {
             LOG.error(e);
         }
+
 
 
         // Доергаем спринговые бины
