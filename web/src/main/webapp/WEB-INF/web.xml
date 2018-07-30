@@ -10,27 +10,35 @@
         <listener-class>org.igorr.quickstarts.helloworld.web.servlets.init.InitListener</listener-class>
     </listener>
 
-    <!-- пилим ->
-    <!-- Основной сервлет для Spring MVC -->
     <!--
+    Usually the mvc configuration(/WEB-INF/mvc-config.xml) contains the the beans that are needed by the controller layer (e.g. the controllers, view resolvers ...)
+    The application configuration(classpath:spring/application-config.xml) is for the model layer (here you can define daos, services...)
+    -->
+    <!-- Основной сервлет для Spring MVC -->
     <servlet>
-        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-name>dispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/config/mvc-config.xml</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>mvc-dispatcher</servlet-name>
-        <url-pattern>/mvcexaple/*</url-pattern>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+        <param-value>/WEB-INF/config/application-context.xml</param-value>
     </context-param>
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    -->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
 
 </web-app>
