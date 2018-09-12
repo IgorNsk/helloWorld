@@ -22,9 +22,11 @@ public class LuckyNumberGeneratorTest {
     private LuckyNumberGenerator mock = spy(new LuckyNumberGenerator());
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
     }
+
+
 
 
     @Test
@@ -36,7 +38,13 @@ public class LuckyNumberGeneratorTest {
     @Test
     public void getLuckyNumberComputed() throws Exception {
         when(mock, "getComputedLuckyNumber", anyInt()).thenReturn(300);
-        assertEquals(301,  mock.getLuckyNumber("Name"));
+        assertEquals(300,  mock.getLuckyNumber("Name"));
     }
 
+    @Test
+    public void getLuckyNumber() {
+        LuckyNumberGenerator g = new LuckyNumberGenerator();
+        assertEquals(10, g.getLuckyNumber("1234567890"));
+
+    }
 }

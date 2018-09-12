@@ -2,11 +2,11 @@ package org.igorr.quickstarts.helloworld.web.testing;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import sun.rmi.runtime.Log;
 
 public class LuckyNumberGenerator {
 
     private static final Logger LOG = LogManager.getLogger(LuckyNumberGenerator.class);
+    private static final int RESULT_ZERO = 0;
 
 
     public int getLuckyNumber(String name) {
@@ -22,7 +22,7 @@ public class LuckyNumberGenerator {
     }
 
     private int getDefaultLuckyNumber() {
-        return 0;
+        return RESULT_ZERO;
     }
 
     private void saveIntoDatabase(String name) {

@@ -16,6 +16,6 @@ public class InitListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
+        // do nothing
     }
 }
