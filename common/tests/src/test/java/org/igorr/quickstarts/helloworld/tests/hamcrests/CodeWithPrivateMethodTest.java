@@ -1,8 +1,9 @@
-package org.igorr.quickstarts.helloworld.web.testing;
+package org.igorr.quickstarts.helloworld.tests.hamcrests;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.api.support.membermodification.MemberMatcher;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -29,7 +30,7 @@ public class CodeWithPrivateMethodTest {
     public void when_gambling_is_true_then_always_explode() throws Exception {
         CodeWithPrivateMethod spy = PowerMockito.spy(new CodeWithPrivateMethod());
 
-        when(spy, method(CodeWithPrivateMethod.class, "doTheGamble", String.class, int.class))
+        when(spy, MemberMatcher.method(CodeWithPrivateMethod.class, "doTheGamble", String.class, int.class))
                 .withArguments(any(String.class), any(Integer.class))
                 .thenReturn(true);
 

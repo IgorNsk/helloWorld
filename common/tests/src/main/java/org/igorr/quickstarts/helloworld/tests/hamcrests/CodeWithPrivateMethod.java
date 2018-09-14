@@ -1,4 +1,4 @@
-package org.igorr.quickstarts.helloworld.web.testing;
+package org.igorr.quickstarts.helloworld.tests.hamcrests;
 
 import java.util.Random;
 
