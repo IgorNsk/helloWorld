@@ -10,7 +10,7 @@ public class SingletonsPropsTest {
     @Test
     public void testGetProps() throws Exception {
         Set<Object> result = SingletonsProps.getProps();
-        Assert.assertNotEquals( null, result);
+        Assert.assertNotSame( null, result);
     }
 }
 

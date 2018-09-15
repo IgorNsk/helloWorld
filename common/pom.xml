@@ -17,17 +17,17 @@
         <module>dpl</module>
         <module>exceptions</module>
         <module>aspects</module>
+        <module>tests</module>
     </modules>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.igorr.quickstarts</groupId>
-                <artifactId>logging</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.igorr.quickstarts</groupId>
+            <artifactId>logging</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
 
